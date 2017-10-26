@@ -24,6 +24,7 @@ export default {
     const tag = `e-${this.type}`;
     return h(tag, {
       props: { ...attrs },
+      class: ['warpper'],
       on: {
         input: this.handle,
         change: this.handle,
