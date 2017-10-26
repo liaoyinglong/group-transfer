@@ -7,7 +7,7 @@
     <!-- <wrapper type='select' :data='arr' @input="val=>value5=val" :value='value5'></wrapper> <hr> -->
     <wrapper type='select' :data='arr' v-model='value5'></wrapper> <hr>
     <!-- <wrapper type='radio'></wrapper> <hr> -->
-    <!-- <wrapper type='checkbox'></wrapper> <hr> -->
+    <wrapper type='checkbox' v-model="value8" :data='arr'></wrapper> <hr>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
       value5: 0,
       value6: '',
       value7: '',
-      value8: '',
+      value8: [],
       arr: [{ status: '', text: '全部' }, { status: 0, text: '停用' }, { status: 1, text: '启用' }],
     };
   },

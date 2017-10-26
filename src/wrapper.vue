@@ -1,11 +1,13 @@
 <script>
 import props from './item/props';
-
+import handle from './item/handle';
 import eText from './item/eText';
 import eDatetime from './item/eDatetime';
 import eSelect from './item/eSelect';
+import eCheckbox from './item/eCheckbox';
 
 export default {
+  mixins: [handle],
   props,
   components: {
     eText,
@@ -13,6 +15,7 @@ export default {
     eTextarea: eText,
     eDatetime,
     eSelect,
+    eCheckbox,
   },
   render(h) {
     const attrs = this.$props;
@@ -20,15 +23,10 @@ export default {
     return h(tag, {
       props: { ...attrs },
       on: {
-        input: this.handleInput,
-        change: this.handleInput,
+        input: this.handle,
+        change: this.handle,
       },
     });
-  },
-  methods: {
-    handleInput(value) {
-      this.$emit('input', value);
-    },
   },
 };
 </script>
