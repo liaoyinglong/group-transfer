@@ -5,7 +5,7 @@ export default {
   render(h) {
     const attrs = this.$props;
     const { type } = this;
-    return <el-date-picker {...attrs} value={attrs.value} on-input={this.tiemChange} />;
+    return <el-date-picker {...{ attrs }} value={attrs.value} on-input={this.tiemChange} />;
   },
   methods: {
     tiemChange(time) {

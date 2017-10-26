@@ -2,8 +2,6 @@
 import props from './item/props';
 
 import eText from './item/eText';
-import eNumber from './item/eNumber';
-import eTextarea from './item/eTextarea';
 import eDatetime from './item/eDatetime';
 import eSelect from './item/eSelect';
 
@@ -11,8 +9,8 @@ export default {
   props,
   components: {
     eText,
-    eNumber,
-    eTextarea,
+    eNumber: eText,
+    eTextarea: eText,
     eDatetime,
     eSelect,
   },
@@ -23,15 +21,12 @@ export default {
       props: { ...attrs },
       on: {
         input: this.handleInput,
-        change: this.handleChange,
+        change: this.handleInput,
       },
     });
   },
   methods: {
     handleInput(value) {
-      this.$emit('input', value);
-    },
-    handleChange(value) {
       this.$emit('input', value);
     },
   },
