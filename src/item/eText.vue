@@ -6,7 +6,7 @@ export default {
   props,
   render(h) {
     const attrs = this.$props;
-    return <el-input {...{ attrs }} on-input={this.handle} />;
+    return <el-input value={attrs.value} {...{ attrs }} on-input={this.handle} />;
   },
 };
 </script>

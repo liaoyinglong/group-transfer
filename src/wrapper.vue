@@ -5,6 +5,7 @@ import eText from './item/eText';
 import eDatetime from './item/eDatetime';
 import eSelect from './item/eSelect';
 import eCheckbox from './item/eCheckbox';
+import eRadio from './item/eRadio';
 
 export default {
   mixins: [handle],
@@ -16,6 +17,7 @@ export default {
     eDatetime,
     eSelect,
     eCheckbox,
+    eRadio,
   },
   render(h) {
     const attrs = this.$props;

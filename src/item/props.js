@@ -6,9 +6,10 @@ export default {
   max: Number,
   min: Number,
   name: String,
-  value: {},
+  value: [String, Number, Object, Array],
   disabled: Boolean,
   readonly: Boolean,
   autofocus: Boolean,
   data: {},
+  resize: String,
 };

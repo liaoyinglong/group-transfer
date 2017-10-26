@@ -7,7 +7,7 @@ export default {
   render(h) {
     const attrs = this.$props;
     const { type } = this;
-    return <el-date-picker {...{ attrs }} value={attrs.value} on-input={this.handle} />;
+    return <el-date-picker value={attrs.value} on-input={this.handle} {...{ attrs }} />;
   },
 };
 </script>
