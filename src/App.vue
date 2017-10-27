@@ -1,21 +1,64 @@
 <template>
   <div>
-
-    <eFormItem :params='params' :tpl='tpl'></eFormItem>
-
-    <!-- <wrapper v-for="(item,index) in testData" :key="index" :type='item.type' v-model="item.input"></wrapper> -->
+    <el-row v-for="(condition,index) in conditionSelector" :key="index">
+      <el-col :span="2" :offset="1">{{condition.description}}</el-col>
+      <el-col :span="20">
+        <eFormItem :condition='condition'></eFormItem>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
 import eFormItem from './eFormItem';
 
-const params = {
-  begin: { type: 'number' },
-  end: { type: 'text' },
-};
+let res = {};
+res.data = [
+  {
+    description: '满多少元',
+    tpl: '满-{"param":"begin"}-至-{"param":"end"}-元',
+    params: {
+      begin: {
+        control_type: 'number',
+      },
+      end: {
+        control_type: 'number',
+      },
+    },
+  },
+  {
+    description: '几率',
+    tpl: '{"param":"odds"}',
+    params: {
+      odds: {
+        control_type: 'text',
+      },
+    },
+  },
+  {
+    description: '状态',
+    tpl: '{"param":"status"}',
+    params: {
+      status: {
+        control_type: 'select',
+        data: [
+          {
+            status: '',
+            text: '全部',
+          },
+          {
+            status: 0,
+            text: '停用',
+          },
+          {
+            status: 1,
+            text: '启用',
+          },
+        ],
+      },
+    },
+  },
+];
 
 export default {
   components: {
@@ -23,14 +66,8 @@ export default {
   },
   data() {
     return {
-      tpl: '',
-      params,
+      conditionSelector: res.data,
     };
-  },
-
-  async created() {
-    await sleep(2000);
-    this.tpl = '满-{"param":"begin"}-至-{"param":"end"}-元';
   },
 };
 </script>
