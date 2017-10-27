@@ -41,6 +41,31 @@ res.data = [
     params: {
       status: {
         control_type: 'select',
+        input: 0,
+        data: [
+          {
+            status: '',
+            text: '全部',
+          },
+          {
+            status: 0,
+            text: '停用',
+          },
+          {
+            status: 1,
+            text: '启用',
+          },
+        ],
+      },
+    },
+  },
+  {
+    description: '状态',
+    tpl: '{"param":"status"}',
+    params: {
+      status: {
+        control_type: 'checkbox',
+        input: [0],
         data: [
           {
             status: '',
