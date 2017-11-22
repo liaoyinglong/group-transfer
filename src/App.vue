@@ -1,106 +1,133 @@
 <template>
   <div>
-    <el-row v-for="(condition,index) in conditionSelector" :key="index">
-      <el-col :span="2" :offset="1">{{condition.description}}</el-col>
-      <el-col :span="20">
-        <eFormItem :condition='condition'></eFormItem>
-      </el-col>
-    </el-row>
+    <ec-table :data-source='dataSource'>
+      <ec-table-column label='姓名'>
+        <template scope="scope">{{scope.row.name}}</template>
+      </ec-table-column>
+      <ec-table-column label='年龄'>
+        <template scope="scope">{{scope.row.age}}</template>
+      </ec-table-column>
+      <ec-table-column label='性别'>
+        <template scope="scope">{{scope.row.sex}}</template>
+      </ec-table-column>
+    </ec-table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <ec-table :data-source='json'>
+      <ec-table-column label='广告计划'>
+        <template scope="scope">{{scope.row.col1}}</template>
+      </ec-table-column>
+      <ec-table-column label='广告'>
+        <template scope="scope">{{scope.row.col2}}</template>
+      </ec-table-column>
+      <ec-table-column label='展示'>
+        <template scope="scope">{{scope.row.col3}}</template>
+      </ec-table-column>
+    </ec-table>
   </div>
 </template>
 
 <script>
-import eFormItem from './eFormItem';
-
-let res = {};
-res.data = [
-  {
-    description: '满多少元',
-    tpl: '满-{"param":"begin"}-至-{"param":"end"}-元',
-    params: {
-      begin: {
-        control_type: 'number',
-      },
-      end: {
-        control_type: 'number',
-      },
-    },
-  },
-  {
-    description: '几率',
-    tpl: '{"param":"odds"}',
-    params: {
-      odds: {
-        control_type: 'text',
-      },
-    },
-  },
-  {
-    description: '状态',
-    tpl: '{"param":"status"}',
-    params: {
-      status: {
-        control_type: 'select',
-        input: 0,
-        data: [
-          {
-            status: '',
-            text: '全部',
-          },
-          {
-            status: 0,
-            text: '停用',
-          },
-          {
-            status: 1,
-            text: '启用',
-          },
-        ],
-      },
-    },
-  },
-  {
-    description: '状态',
-    tpl: '{"param":"status"}',
-    params: {
-      status: {
-        control_type: 'checkbox',
-        input: [0],
-        data: [
-          {
-            status: '',
-            text: '全部',
-          },
-          {
-            status: 0,
-            text: '停用',
-          },
-          {
-            status: 1,
-            text: '启用',
-          },
-        ],
-      },
-    },
-  },
-];
-
+import EcTable from './ec-table';
+import EcTableColumn from './ec-table/ec-table-column';
 export default {
   components: {
-    eFormItem,
+    EcTable,
+    EcTableColumn,
   },
   data() {
     return {
-      conditionSelector: res.data,
+      dataSource: [
+        {
+          id: 1,
+          parentId: 0,
+          name: '测试1',
+          age: 18,
+          sex: '男',
+          children: [
+            {
+              id: 2,
+              parentId: 1,
+              name: '测试2',
+              age: 22,
+              sex: '男',
+            },
+          ],
+        },
+        {
+          id: 3,
+          parentId: 0,
+          name: '测试3',
+          age: 23,
+          sex: '女',
+          children: [
+            {
+              id: 4,
+              parentId: 3,
+              name: '测试4',
+              age: 22,
+              sex: '男',
+            },
+            {
+              id: 5,
+              parentId: 3,
+              name: '测试5',
+              age: 25,
+              sex: '男',
+            },
+            {
+              id: 6,
+              parentId: 3,
+              name: '测试6',
+              age: 26,
+              sex: '女',
+              children: [
+                {
+                  id: 7,
+                  parentId: 6,
+                  name: '测试7',
+                  age: 27,
+                  sex: '男',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 18,
+          parentId: 0,
+          name: '测试8',
+          age: 18,
+          sex: '男',
+        },
+      ],
+      json: [
+        {
+          id: 1,
+          col1: '深港澳车展',
+          col2: '4个',
+          col3: '1500',
+          children: [
+            { id: 2, col1: '', col2: '深港澳车展开屏', col3: '1500' },
+            { id: 3, col1: '', col2: '深港澳车展开屏', col3: '1500' },
+            { id: 4, col1: '', col2: '深港澳车展开屏', col3: '1500' },
+          ],
+        },
+        {
+          id: 5,
+          col1: '深港澳车展2',
+          col2: '8个',
+          col3: '15001',
+          children: [
+            { id: 6, col1: '', col2: '深港澳车展开屏2', col3: '1500' },
+            { id: 7, col1: '', col2: '深港澳车展开屏2', col3: '1500' },
+            { id: 8, col1: '', col2: '深港澳车展开屏2', col3: '1500' },
+          ],
+        },
+      ],
     };
   },
 };
 </script>
-<style lang="scss">
-.warpper {
-  &.el-textarea,
-  &.el-input {
-    width: 20%;
-  }
-}
-</style>
