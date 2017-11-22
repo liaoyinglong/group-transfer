@@ -1,7 +1,9 @@
 <template>
-  <el-table-column :label="label" :key="label">
+  <el-table-column :label="label" :key="label" v-bind="$props">
     <template scope="scope">
-      <span v-for="(space, levelIndex) in scope.row._level" :key="levelIndex" class="ec-table_space"></span>
+      <span v-if='alignColumn'>
+        <span v-for="(space, levelIndex) in scope.row._level" :key="levelIndex" class="ec-table_space"></span>
+      </span>
       <span v-if='scope.row.needIcon && columnNeedIcon'>
         <i class="el-icon-caret-right" :class="{'expanded-icon':scope.row._expanded}"></i>
       </span>
@@ -17,6 +19,41 @@ export default {
   props: {
     label: String,
     prop: String,
+    alignColumn: {
+      type: Boolean,
+      default: false,
+    },
+    width: {},
+    minWidth: {},
+    renderHeader: Function,
+    sortable: {
+      type: [String, Boolean],
+      default: false,
+    },
+    sortMethod: Function,
+    resizable: {
+      type: Boolean,
+      default: true,
+    },
+    context: {},
+    columnKey: String,
+    align: String,
+    headerAlign: String,
+    showTooltipWhenOverflow: Boolean,
+    showOverflowTooltip: Boolean,
+    fixed: [Boolean, String],
+    formatter: Function,
+    selectable: Function,
+    reserveSelection: Boolean,
+    filterMethod: Function,
+    filteredValue: Array,
+    filters: Array,
+    filterPlacement: String,
+    filterMultiple: {
+      type: Boolean,
+      default: true,
+    },
+    index: [Number, Function],
   },
   data() {
     return {

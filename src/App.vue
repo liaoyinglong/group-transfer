@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ec-table :data-source='dataSource'>
-      <ec-table-column label='姓名'>
+    <ec-table :data-source='dataSource' border>
+      <ec-table-column label='姓名' showOverflowTooltip width='500'>
         <template scope="scope">{{scope.row.name}}</template>
       </ec-table-column>
       <ec-table-column label='年龄'>
@@ -16,14 +16,13 @@
     <br>
     <br>
     <ec-table :data-source='json'>
-      <ec-table-column label='广告计划'>
-        <template scope="scope">{{scope.row.col1}}</template>
-      </ec-table-column>
-      <ec-table-column label='广告'>
-        <template scope="scope">{{scope.row.col2}}</template>
-      </ec-table-column>
-      <ec-table-column label='展示'>
-        <template scope="scope">{{scope.row.col3}}</template>
+      <ec-table-column label='广告计划' prop='col1' />
+      <ec-table-column label='广告' :alignColumn='true' prop='col2' />
+      <ec-table-column label='展示' prop='col3' />
+      <ec-table-column label='操作'>
+        <template scope="scope">
+          <el-button type="primary" @click.stop="handleClickButton(scope.row)">明细</el-button>
+        </template>
       </ec-table-column>
     </ec-table>
   </div>
@@ -128,6 +127,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    handleClickButton(scope) {
+      console.log(scope);
+    },
   },
 };
 </script>
