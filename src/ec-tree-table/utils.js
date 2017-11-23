@@ -25,7 +25,6 @@ export function treeToArray(data, expandedAll, childrenKey, parent, level) {
       let children = treeToArray(item[childrenKey], expandedAll, childrenKey, item, _level);
       temp = temp.concat(children);
     }
-    return temp;
   });
   return temp;
 }
