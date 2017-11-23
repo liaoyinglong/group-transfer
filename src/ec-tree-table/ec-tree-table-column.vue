@@ -4,7 +4,7 @@
       <span v-if='alignColumn'>
         <span v-for="(space, levelIndex) in scope.row._level" :key="levelIndex" class="ec-table_space"></span>
       </span>
-      <span v-if='scope.row.needIcon && columnNeedIcon'>
+      <span v-if='scope.row.needIcon && columnNeedIcon' class="ec-icon_wrapper">
         <i class="el-icon-caret-right" :class="{'expanded-icon':scope.row._expanded}"></i>
       </span>
       <span v-if='prop'>{{scope.row[prop]}}</span>
@@ -77,10 +77,14 @@ export default {
   width: 14px;
   height: 14px;
 }
-.el-icon-caret-right {
-  transition: transform 0.3s ease-in-out;
-  &.expanded-icon {
-    transform: rotate(90deg);
+.ec-icon_wrapper {
+  position: absolute;
+  left: 0;
+  .el-icon-caret-right {
+    transition: transform 0.3s ease-in-out;
+    &.expanded-icon {
+      transform: rotate(90deg);
+    }
   }
 }
 </style>
