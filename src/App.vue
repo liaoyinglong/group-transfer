@@ -1,40 +1,40 @@
 <template>
   <div>
-    <ec-table :data-source='dataSource' border>
-      <ec-table-column label='姓名' showOverflowTooltip width='500'>
+    <ec-tree-table :data-source='dataSource' border>
+      <ec-tree-table-column label='姓名' showOverflowTooltip width='500'>
         <template scope="scope">{{scope.row.name}}</template>
-      </ec-table-column>
-      <ec-table-column label='年龄'>
+      </ec-tree-table-column>
+      <ec-tree-table-column label='年龄'>
         <template scope="scope">{{scope.row.age}}</template>
-      </ec-table-column>
-      <ec-table-column label='性别'>
+      </ec-tree-table-column>
+      <ec-tree-table-column label='性别'>
         <template scope="scope">{{scope.row.sex}}</template>
-      </ec-table-column>
-    </ec-table>
+      </ec-tree-table-column>
+    </ec-tree-table>
     <br>
     <br>
     <br>
     <br>
-    <ec-table :data-source='json'>
-      <ec-table-column label='广告计划' prop='col1' />
-      <ec-table-column label='广告' :alignColumn='true' prop='col2' />
-      <ec-table-column label='展示' prop='col3' />
-      <ec-table-column label='操作'>
+    <ec-tree-table :data-source='json'>
+      <ec-tree-table-column label='广告计划' prop='col1' />
+      <ec-tree-table-column label='广告' :alignColumn='true' prop='col2' />
+      <ec-tree-table-column label='展示' prop='col3' />
+      <ec-tree-table-column label='操作'>
         <template scope="scope">
           <el-button type="primary" @click.stop="handleClickButton(scope.row)">明细</el-button>
         </template>
-      </ec-table-column>
-    </ec-table>
+      </ec-tree-table-column>
+    </ec-tree-table>
   </div>
 </template>
 
 <script>
-import EcTable from './ec-table';
-import EcTableColumn from './ec-table/ec-table-column';
+import EcTreeTable from './ec-tree-table';
+import EcTreeTableColumn from './ec-tree-table/ec-tree-table-column';
 export default {
   components: {
-    EcTable,
-    EcTableColumn,
+    EcTreeTable,
+    EcTreeTableColumn,
   },
   data() {
     return {

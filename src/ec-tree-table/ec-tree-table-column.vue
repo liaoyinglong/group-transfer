@@ -7,7 +7,6 @@
       <span v-if='scope.row.needIcon && columnNeedIcon'>
         <i class="el-icon-caret-right" :class="{'expanded-icon':scope.row._expanded}"></i>
       </span>
-      <span v-else class="ec-table_space"></span>
       <span v-if='prop'>{{scope.row[prop]}}</span>
       <slot v-else :row='scope.row'></slot>
     </template>
