@@ -119,7 +119,6 @@ export default {
         if (!item._parent) return;
         temp = copyArr.filter(val => val === item._parent);
         if (!temp.length) {
-          console.log(copyArr.indexOf(item));
           copyArr.splice(copyArr.indexOf(item), 0, item._parent);
         }
       });

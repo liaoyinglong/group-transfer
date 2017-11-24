@@ -4,6 +4,8 @@
 >
 > http://element-cn.eleme.io/1.4/#/zh-CN/component/transfer
 
+## 预览 http://liaoyinglong.com/group-transfer/dist/
+
 ## props 的一点说明
 
 | 参数           | 说明                 | 类型                                        | 可选值 | 默认值 |
