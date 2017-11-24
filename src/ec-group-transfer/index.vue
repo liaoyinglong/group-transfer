@@ -1,8 +1,8 @@
 <template>
   <div class="el-transfer">
-    <transfer-panel v-bind="$props" :data="sourceData" :title="titles[0] || t('el.transfer.titles.0')" :default-checked="leftDefaultChecked" :placeholder="filterPlaceholder || t('el.transfer.filterPlaceholder')" @checked-change="onSourceCheckedChange">
+    <ec-group-transfer-panel v-bind="$props" :data="sourceData" :title="titles[0] || t('el.transfer.titles.0')" :default-checked="leftDefaultChecked" :placeholder="filterPlaceholder || t('el.transfer.filterPlaceholder')" @checked-change="onSourceCheckedChange">
       <slot name="left-footer"></slot>
-    </transfer-panel>
+    </ec-group-transfer-panel>
     <div class="el-transfer__buttons">
       <el-button type="primary" size="small" @click.native="addToLeft" :disabled="rightChecked.length === 0">
         <i class="el-icon-arrow-left"></i>
@@ -13,16 +13,16 @@
         <i class="el-icon-arrow-right"></i>
       </el-button>
     </div>
-    <transfer-panel v-bind="$props" :data="targetData" :title="titles[1] || t('el.transfer.titles.1')" :default-checked="rightDefaultChecked" :placeholder="filterPlaceholder || t('el.transfer.filterPlaceholder')" @checked-change="onTargetCheckedChange">
+    <ec-group-transfer-panel v-bind="$props" :data="targetData" :title="titles[1] || t('el.transfer.titles.1')" :default-checked="rightDefaultChecked" :placeholder="filterPlaceholder || t('el.transfer.filterPlaceholder')" @checked-change="onTargetCheckedChange">
       <slot name="right-footer"></slot>
-    </transfer-panel>
+    </ec-group-transfer-panel>
   </div>
 </template>
 
 <script>
 import Emitter from 'element-ui/lib/mixins/emitter';
 import Locale from 'element-ui/lib/mixins/locale';
-import TransferPanel from './ec-group-transfer-panel';
+import EcGroupTransferPanel from './ec-group-transfer-panel';
 import { treeToArray } from './utils';
 export default {
   name: 'EcGroupTransfer',
@@ -30,7 +30,7 @@ export default {
   mixins: [Emitter, Locale],
 
   components: {
-    TransferPanel,
+    EcGroupTransferPanel,
   },
 
   props: {
