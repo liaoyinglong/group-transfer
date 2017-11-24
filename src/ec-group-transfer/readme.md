@@ -1,23 +1,34 @@
-<template>
-  <div>
-    <ec-group-transfer
-      v-model="value"
-      :data='json'
-      filterable
-      @change="handleChange"
-      :left-default-checked="['2', '3']"
-      :right-default-checked="['4']"
-      :button-texts="['到左边', '到右边']"
-      :render-content='renderFunc'
-    />
+# 公共组件 - 分组穿梭框
 
-  </div>
-</template>
+> props 以及 events 无缝对接饿了么 ui 的穿梭框，
+>
+> http://element-cn.eleme.io/1.4/#/zh-CN/component/transfer
 
-<script>
-import EcGroupTransfer from './ec-group-transfer';
+## props 的一点说明
+
+| 参数           | 说明                 | 类型                                        | 可选值 | 默认值 |
+| -------------- | -------------------- | ------------------------------------------- | ------ | ------ |
+| data           | 数据源               | array[{ key, label, disabled,children:[] }] | -      | []     |
+| props          | 数据源的字段别名     | object{key, label, disabled,children}       | -      | -      |
+| render-content | 自定义数据项渲染函数 | function(h, option)                         | -      | -      |
+
+## 代码示例
+
+```html
+ <ec-group-transfer
+    v-model="value"
+    :data='json'
+    filterable
+    @change="handleChange"
+    :left-default-checked="['2', '3']"
+    :right-default-checked="['4']"
+    :button-texts="['到左边', '到右边']"
+    :render-content='renderFunc'
+  />
+```
+
+```javascript
 export default {
-  components: { EcGroupTransfer },
   data() {
     return {
       json: [
@@ -70,4 +81,4 @@ export default {
     },
   },
 };
-</script>
+```
