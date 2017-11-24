@@ -1,15 +1,9 @@
 <template>
   <div>
-    <ec-group-transfer
-      v-model="value"
-      :data='json'
-      filterable
-      @change="handleChange"
-      :left-default-checked="['2', '3']"
-      :right-default-checked="['4']"
-      :button-texts="['到左边', '到右边']"
-      :render-content='renderFunc'
-    />
+    <ec-group-transfer v-model="value" :data='json' filterable @change="handleChange" :left-default-checked="['2', '3']" :right-default-checked="['4']" :button-texts="['到左边', '到右边']" :render-content='renderFunc' />
+    <hr>
+    <br>
+    <ec-group-transfer v-model="value" :data='data' filterable @change="handleChange" :left-default-checked="['2', '3']" :right-default-checked="['4']" :button-texts="['到左边', '到右边']" :render-content='renderFunc' />
 
   </div>
 </template>
@@ -19,7 +13,20 @@ import EcGroupTransfer from './ec-group-transfer';
 export default {
   components: { EcGroupTransfer },
   data() {
+    const generateData = _ => {
+      const data = [];
+      for (let i = 1; i <= 15; i++) {
+        data.push({
+          key: i,
+          label: `备选项 ${i}`,
+          disabled: i % 4 === 0,
+        });
+      }
+      return data;
+    };
     return {
+      data: generateData(),
+      value1: [1, 4],
       json: [
         {
           label: '渠道名称1',

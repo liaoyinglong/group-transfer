@@ -14,8 +14,8 @@ module.exports = {
       'vue-router',
       'vuex',
       'element-ui',
-      'echarts',
-      'mockjs',
+      // 'echarts',
+      // 'mockjs',
       // "element-ui/lib/theme-default/index.css"
 
       // 'mint-ui',

@@ -116,8 +116,10 @@ export default {
       let copyArr = this.formatData.filter(item => this.value.indexOf(item[this.props.key]) > -1);
       let temp;
       rightArr.forEach((item, i) => {
+        if (!item._parent) return;
         temp = copyArr.filter(val => val === item._parent);
         if (!temp.length) {
+          console.log(copyArr.indexOf(item));
           copyArr.splice(copyArr.indexOf(item), 0, item._parent);
         }
       });
