@@ -4,7 +4,6 @@
     <hr>
     <br>
     <ec-group-transfer v-model="value" :data='data' filterable @change="handleChange" :left-default-checked="['2', '3']" :right-default-checked="['4']" :button-texts="['到左边', '到右边']" :render-content='renderFunc' />
-
   </div>
 </template>
 

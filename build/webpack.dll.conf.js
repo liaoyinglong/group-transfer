@@ -9,10 +9,7 @@ var env = config.build.env;
 module.exports = {
   entry: {
     libs: [
-      'babel-polyfill',
       'vue/dist/vue.esm.js',
-      'vue-router',
-      'vuex',
       'element-ui',
       // 'echarts',
       // 'mockjs',

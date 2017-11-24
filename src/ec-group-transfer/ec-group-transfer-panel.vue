@@ -3,67 +3,30 @@
     <p class="el-transfer-panel__header">{{ title }}</p>
 
     <div class="el-transfer-panel__body">
-      <el-input
-        class="el-transfer-panel__filter"
-        v-model="query"
-        size="small"
-        :placeholder="placeholder"
-        :icon="inputIcon"
-        @mouseenter.native="inputHover = true"
-        @mouseleave.native="inputHover = false"
-        @click="clearQuery"
-        v-if="filterable"
-      ></el-input>
-        <el-checkbox-group
-          v-model="checked"
-          v-show="!hasNoMatch && data.length > 0"
-          :class="{ 'is-filterable': filterable }"
-          class="el-transfer-panel__list"
-        >
-          <span
-            v-for="item in filteredData"
-            :key="item[keyProp]"
-          >
-            <template
-              v-if='item.isGroupTitle && shouldShowGroupTitle(item)'
-            >
-              <option-content
-                :option="item"
-                class="ec-group-transfer_title"
-              ></option-content>
-</template>
-<template v-if="!item.isGroupTitle">
-  <el-checkbox
-    class="el-transfer-panel__item"
-    :label="item[keyProp]"
-    :disabled="item[disabledProp]"
-  >
-    <option-content :option="item"></option-content>
-    </el-checkbox>
-</template>
-</span>
+      <el-input class="el-transfer-panel__filter" v-model="query" size="small" :placeholder="placeholder" :icon="inputIcon" @mouseenter.native="inputHover = true" @mouseleave.native="inputHover = false" @click="clearQuery" v-if="filterable"></el-input>
+      <el-checkbox-group v-model="checked" v-show="!hasNoMatch && data.length > 0" :class="{ 'is-filterable': filterable }" class="el-transfer-panel__list">
+        <span v-for="item in filteredData" :key="item[keyProp]">
+          <template v-if='item.isGroupTitle && shouldShowGroupTitle(item)'>
+            <option-content :option="item" class="ec-group-transfer_title"></option-content>
+          </template>
+          <template v-if="!item.isGroupTitle">
+            <el-checkbox class="el-transfer-panel__item" :label="item[keyProp]" :disabled="item[disabledProp]">
+              <option-content :option="item"></option-content>
+            </el-checkbox>
+          </template>
+        </span>
 
-</el-checkbox-group>
-<p
-  class="el-transfer-panel__empty"
-  v-show="hasNoMatch"
->{{ t('el.transfer.noMatch') }}</p>
-  <p
-    class="el-transfer-panel__empty"
-    v-show="data.length === 0 && !hasNoMatch"
-  >{{ t('el.transfer.noData') }}</p>
+      </el-checkbox-group>
+      <p class="el-transfer-panel__empty" v-show="hasNoMatch">{{ t('el.transfer.noMatch') }}</p>
+      <p class="el-transfer-panel__empty" v-show="data.length === 0 && !hasNoMatch">{{ t('el.transfer.noData') }}</p>
     </div>
 
     <p class="el-transfer-panel__footer">
-      <el-checkbox
-        v-model="allChecked"
-        @change="handleAllCheckedChange"
-        :indeterminate="isIndeterminate"
-      >{{ checkedSummary }}</el-checkbox>
-        <slot></slot>
+      <el-checkbox v-model="allChecked" @change="handleAllCheckedChange" :indeterminate="isIndeterminate">{{ checkedSummary }}</el-checkbox>
+      <slot></slot>
     </p>
-    </div>
-    </template>
+  </div>
+</template>
 
 <script>
 import Locale from 'element-ui/lib/mixins/locale';

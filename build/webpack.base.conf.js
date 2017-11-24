@@ -21,7 +21,7 @@ function createHappyPlugin(id, loaders) {
 }
 module.exports = {
   entry: {
-    app: ['babel-polyfill', './src/main.js'],
+    app: ['./src/main.js'],
   },
   output: {
     path: config.build.assetsRoot,

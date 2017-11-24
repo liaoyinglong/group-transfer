@@ -11,18 +11,11 @@
     "dll": "node build/build-dll.js"
   },
   "dependencies": {
-    "axios": "^0.17.0",
-    "babel-polyfill": "^6.23.0",
-    "echarts": "^3.7.2",
     "element-ui": "^1.4.7",
-    "happypack": "^4.0.0",
-    "jquery": "^1.11.3",
-    "mockjs": "^1.0.1-beta3",
-    "vue": "2.3.3",
-    "vue-router": "^2.6.0",
-    "vuex": "^2.4.0"
+    "vue": "2.3.3"
   },
   "devDependencies": {
+    "happypack": "^4.0.0",
     "assets-webpack-plugin": "^3.5.1",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
