@@ -100,13 +100,12 @@ export default {
     return {
       leftChecked: [],
       rightChecked: [],
-      formatData: [],
     };
   },
-  created() {
-    this.formatData = treeToArray(this.data, this.props.children);
-  },
   computed: {
+    formatData() {
+      return treeToArray(this.data, this.props.children);
+    },
     sourceData() {
       return this.formatData.filter(item => this.value.indexOf(item[this.props.key]) === -1);
     },
