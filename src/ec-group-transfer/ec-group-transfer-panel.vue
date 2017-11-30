@@ -1,22 +1,21 @@
 <template>
   <div class="el-transfer-panel">
     <p class="el-transfer-panel__header">{{ title }}</p>
-
     <div class="el-transfer-panel__body">
       <el-input class="el-transfer-panel__filter" v-model="query" size="small" :placeholder="placeholder" :icon="inputIcon" @mouseenter.native="inputHover = true" @mouseleave.native="inputHover = false" @click="clearQuery" v-if="filterable"></el-input>
       <el-checkbox-group v-model="checked" v-show="!hasNoMatch && data.length > 0" :class="{ 'is-filterable': filterable }" class="el-transfer-panel__list">
-        <span v-for="item in filteredData" :key="item[keyProp]">
+        <span v-for="(item,index) in filteredData" :key="item[keyProp]">
           <template v-if='item.isGroupTitle && shouldShowGroupTitle(item)'>
             <option-content :option="item" class="ec-group-transfer_title"></option-content>
           </template>
           <template v-if="!item.isGroupTitle">
-            <el-checkbox class="el-transfer-panel__item" :label="item[keyProp]" :disabled="item[disabledProp]">
+            <el-checkbox class="el-transfer-panel__item" :label="item[keyProp]" :disabled="item[disabledProp]" @mouseenter.native='event=>handleMouseEnter(event,item,index)' @mouseleave.native='event=>handleMouseLeave(event)'>
               <option-content :option="item"></option-content>
             </el-checkbox>
           </template>
         </span>
-
       </el-checkbox-group>
+      <el-tooltip :content="tooltipContent" placement="top" ref="tooltip" />
       <p class="el-transfer-panel__empty" v-show="hasNoMatch">{{ t('el.transfer.noMatch') }}</p>
       <p class="el-transfer-panel__empty" v-show="data.length === 0 && !hasNoMatch">{{ t('el.transfer.noData') }}</p>
     </div>
@@ -30,7 +29,7 @@
 
 <script>
 import Locale from 'element-ui/lib/mixins/locale';
-
+import debounce from 'throttle-debounce/debounce';
 export default {
   mixins: [Locale],
 
@@ -78,6 +77,7 @@ export default {
     filterMethod: Function,
     defaultChecked: Array,
     props: Object,
+    showOverflowTooltip: Boolean,
   },
 
   data() {
@@ -86,6 +86,7 @@ export default {
       allChecked: false,
       query: '',
       inputHover: false,
+      tooltipContent: '',
     };
   },
 
@@ -188,6 +189,9 @@ export default {
     },
   },
 
+  created() {
+    this.activateTooltip = debounce(50, tooltip => tooltip.handleShowPopper());
+  },
   methods: {
     updateAllChecked() {
       const checkableDataKeys = this.checkableData.map(item => item[this.keyProp]);
@@ -210,6 +214,29 @@ export default {
       let temp = item[childrenKey].filter(val => this.checkableData.includes(val));
       if (!temp.length) return false;
       return true;
+    },
+
+    handleMouseEnter(e, item) {
+      if (!this.showOverflowTooltip) return;
+      let cell = e.target.querySelector('.el-checkbox__label');
+      // 显示...的时候
+      const tooltip = this.$refs.tooltip;
+      if (cell.scrollWidth > cell.offsetWidth) {
+        this.tooltipContent = item[this.labelProp];
+        tooltip.referenceElm = cell;
+        tooltip.$refs.popper && (tooltip.$refs.popper.style.display = 'none');
+        tooltip.doDestroy();
+        tooltip.setExpectedState(true);
+        this.activateTooltip(tooltip);
+      }
+    },
+    handleMouseLeave(event) {
+      if (!this.showOverflowTooltip) return;
+      const tooltip = this.$refs.tooltip;
+      if (tooltip) {
+        tooltip.setExpectedState(false);
+        tooltip.handleClosePopper();
+      }
     },
   },
 };
