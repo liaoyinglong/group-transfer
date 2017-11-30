@@ -13,6 +13,7 @@
 | data           | 数据源               | array[{ key, label, disabled,children:[] }] | -      | []     |
 | props          | 数据源的字段别名     | object{key, label, disabled,children}       | -      | -      |
 | render-content | 自定义数据项渲染函数 | function(h, option)                         | -      | -      |
+| disableAll     | 禁用全部选项         | Boolean                                     | -      | false  |
 
 ## 代码示例
 

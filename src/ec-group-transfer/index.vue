@@ -94,6 +94,7 @@ export default {
         };
       },
     },
+    disableAll: Boolean,
   },
 
   data() {
@@ -104,7 +105,7 @@ export default {
   },
   computed: {
     formatData() {
-      return treeToArray(this.data, this.props.children);
+      return treeToArray(this.data, this.props.children, this.disableAll);
     },
     sourceData() {
       return this.formatData.filter(item => this.value.indexOf(item[this.props.key]) === -1);
