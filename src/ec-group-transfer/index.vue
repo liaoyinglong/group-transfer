@@ -95,6 +95,7 @@ export default {
       },
     },
     disableAll: Boolean,
+    showOverflowTooltip: Boolean,
   },
 
   data() {
